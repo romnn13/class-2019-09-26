@@ -1,0 +1,25 @@
+---
+title: "Gapminder"
+author: "George Guarnieri"
+date: "9/26/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gapminder)
+library(ggplot2)
+library(gganimate)
+library(png)
+
+
+```
+
+Data for belgium 1962
+```{r}
+gapminder%>%
+  filter(continent=="Europe")%>%
+  ggplot(aes(x=gdpPercap,y=lifeExp,size=pop))+geom_point() + transition_time(year) +
+  labs(title = "Year: {frame_time}")+scale_x_log1()
+```
